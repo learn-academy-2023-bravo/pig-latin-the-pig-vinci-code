@@ -32,9 +32,30 @@ const App = () => {
       console.log("vowelsArray:", vowelsArray)
 
       // ACTION ITEM: your Pig Latin logic goes here!
-
-    
-
+   
+        
+     
+      const translator = () => {
+          let pigLatin = eachWord.toLowerCase()
+          const firstLetter = pigLatin[0]
+          const vowels = ['a', 'e', 'i', 'o', 'u'].includes(firstLetter)
+          if(vowels) {
+            return pigLatin + 'way'
+          }
+          else if (pigLatin[0] === "q" && pigLatin[1] === "u") {
+            pigLatin = pigLatin.slice(2) + pigLatin[0] + pigLatin[1] + 'ay'
+            return pigLatin
+          }
+          else {
+            const vowelIndex = pigLatin.indexOf(pigLatin.match( /[aeiou]/))
+            const consonant = pigLatin.slice(0, vowelIndex,)
+            pigLatin = pigLatin.slice(vowelIndex) + consonant + 'ay'
+            return pigLatin
+          }
+        }
+        const pigLatinTranslation = translator()
+        return pigLatinTranslation
+      
       // ACTION ITEM: this return will be the output of your Pig Latin'd code
       return eachWord
     })
